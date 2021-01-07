@@ -11,9 +11,6 @@ Created on Wed Jan  8 13:41:49 2020
 @author: ragueney
 """
 
-"""
-"""
-
 
 
 from functools import reduce
@@ -85,7 +82,7 @@ class Echiquier:
 # Construction de l'échiquier
 #==============================================================================
     
-    def coordonnees():
+    def coordonnees(self):
         return [lettre + str(chiffre) for chiffre in range(1,9) for lettre in ['A','B','C','D','E','F','G','H']]
     
     
