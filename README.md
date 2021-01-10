@@ -6,12 +6,14 @@ pièces plus puissantes comme la dame qui remplace le vizir. Le premier tournoi 
 se joue à Londres en 1851. Voir aussi l’histoire du café de la Régence. Le bloc soviétique se
 distingue au 20e s. par des structures publiques d’entraînement et compétition. On relève
 actuellement trois tendances :
+
 — le jeu occidental gagne du terrain en Asie, notamment en Chine, en Inde et en Iran;
 — le succès du jeu en ligne avec p.ex. le site libre lichess de Thibault Duplessis et sur twitch;
 — si les ordinateurs dominent dès le début du siècle, des intelligences artificielles comme
 Leela apprennent à jouer seules et tirent avantage de la puissance des cartes graphiques.
 Le plus fort "joueur" du monde en 2020 est l’hybride Stockfish, libre bien sûr.
 2 But
+
     Le but est de programmer en Python une interface de jeu où l’utilisateur entre les coups,
 l’ordinateur vérifie qu’ils sont légaux et affiche la position sur l’échiquier, puis répond jusqu’à
 ce qu’un des joueurs perde son roi ou veuille arrêter.
@@ -19,6 +21,7 @@ Au début chaque camp a 8 pions et 8 pièces supérieures ou figures : 2 tours, 
 2 fous, une dame et un roi. On peut trouver les règles de déplacement sur wikipédia. Dans les
 règles officielles, un joueur ne peut mettre ou laisser son roi en échec (c.à.d. sous la menace
 d’une pièce adverse) mais on ignore cela, on cherche simplement à manger le roi.
+
 3 Structures de données
     On représentera l’échiquier par un tableau ech de 64 entiers. Un zéro est une case vide;
 pour le reste on prend une convention comme 1 : pion blanc, 2 : tour blanche, . . . et ainsi de
@@ -28,6 +31,7 @@ colonne est représentée par une lettre qui va d’a à h, la ligne ou rangée 
 La troisième entrée du dictionnaire est le tableau des cases que la pièce peut atteindre. Il faut
 l’actualiser à chaque coup, de même que la localisation. Quand une pièce est mangée, on la
 supprime de la liste de son camp.
+
 4 Modules
     Je vous conseille de structurer votre programme en cinq modules.
 1
@@ -35,16 +39,19 @@ supprime de la liste de son camp.
     Contient des utilitaires pour calculer si une case existe, est vide ou occupée par une pièce
 noire ou blanche, ainsi que son numéro dans le tableau ech. Il est utile de convertir une case,
 la chaîne "c4" p.ex. en colonne 3 et rangée 4 et inversement, par les fonctions ord et chr.
+
 4.2 Module init
     Remplit les tableaux pour commencer à jouer. On y écrira une fonction saisie_pieces
 qui permet à l’utilisateur de saisir une position de départ, p.ex. la chaîne rg1 f2 g2 h2 pour
 un roi en g1, des pions en f2, g2, h2; puis rg7 mettons pour les noirs. Cela permettra de tester
 les déplacements avec peu de pièces. Puis une autre fonction posit qui place toutes les pièces
 dans la position initiale standard.
+
 4.3 Module affiche
     Permet l’affichage de la position actuelle, avec nom des colonnes et rangées. On cherchera
 les symboles Unicode des pièces pour l’affichage dans le terminal. Pour les couleurs on peut
 utiliser le module colored. On pourra mettre le dernier coup en évidence par une autre couleur. Prévoir aussi d’afficher l’échiquier à l’envers, du côté noir. La rangée 8 sera alors en bas.
+
 4.4 Module coups
    Recense les coups de chaque pièce. On constate qu’elles se divisent en trois catégories :
 — les pièces à longue portée : tour, fou et dame. Les cases disponibles sont les cases vides
@@ -60,6 +67,7 @@ réalité on a le choix dans le type de promotion.)
 Une fonction actu examine les pièces dans chaque camp après chaque coup et appelle une
 sous-fonction correspondant au type de pièce, qui renvoie la liste des coups possibles. Ainsi
 on peut actualiser le tableau piece["coups"].
+
 4.5 Module echecs
    Il contient le programme principal qu’on exécute pour jouer. Une fonction partie lance
 la partie grâce au module init et à coups.actu, demande au joueur de choisir sa couleur et
