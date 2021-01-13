@@ -1,4 +1,4 @@
-1 Introduction
+1 Introduction:
     Le jeu d’échecs a probablement été inventé en Inde sous l’empire Gupta. Il se répand en
 Perse puis en Europe vers l’an mil. Des jeux apparentés existent ailleurs en Asie comme le
 xiangqi chinois, le shogi japonais ou le makruk thaï. Au 15e s. les européens introduisent des
